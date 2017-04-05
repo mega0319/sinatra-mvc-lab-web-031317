@@ -4,7 +4,7 @@ class PigLatinizer
 
   attr_accessor :text
 
-  @@vowels = ['a','e','i','o','u','A','E','I','O','U']
+  @@vowels = ['a','e','i','o','u']
 
 
   def piglatinize(word)
@@ -33,7 +33,7 @@ class PigLatinizer
     cutoff_index = 0
     letters_chopped = ""
     word.split('').each_with_index do |letter, index|
-      if @@vowels.include?(letter)
+      if @@vowels.include?(letter.downcase)
         cutoff_index = index
         break
       end
@@ -55,9 +55,9 @@ class PigLatinizer
   end
 
   def categorize_then_operate(word)
-    if @@vowels.include?(word[0])
+    if @@vowels.include?(word[0].downcase)
       vowelplize(word)
-    elsif @@vowels.include?(word[1])
+    elsif @@vowels.include?(word[1].downcase)
       regplize(word)
     else
       clusterplize(word)
